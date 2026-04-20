@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="search">
+    <input type="text" placeholder="SEARCH CITY" spellcheck="false">
+    <button type="button">
+        <img id="searchimg" src="assets/search.png" alt="search">
+    </button>
+</div>
+
+        <div class="error">
+            <p>! INVALID LOCATION DATA</p>
+        </div>
+
+        <div class="weather">
+            <div class="hero-section">
+                <img class="weather-icon" src="assets/rain.png" alt="weather">
+                <h1 class="temp">22°c</h1>
+                <h2 class="city">New York</h2>
+            </div>
+
+            <div class="details-grid">
+                <div class="col">
+                    <img src="assets/humidity.png" alt="humidity">
+                    <div class="data-box">
+                        <p class="humidity">50%</p>
+                        <span>HUMIDITY</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="assets/wind.png" alt="wind">
+                    <div class="data-box">
+                        <p class="wind">15 km/h</p>
+                        <span>WIND SPEED</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-line"></div>
+        </div>
+    </div>
+
+    <script src="weather2.js"></script>
+</body>
+</html>
