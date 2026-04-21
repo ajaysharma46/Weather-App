@@ -104,6 +104,11 @@ body {
 .weather {
     display: none;
     opacity: 0;
+    
+    width: 100%;
+    overflow: hidden; /* Prevents any children from causing a horizontal scroll */
+    /* keep your existing transition and transform code */
+
     max-height: 0; /* New: starts with no height */
     overflow: hidden; /* New: hides content while height is 0 */
     transform: translateY(30px);
