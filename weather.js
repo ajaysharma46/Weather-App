@@ -36,6 +36,14 @@ async function checkWeather(city) {
             return;
         }
 
+        // Inside your checkWeather function...
+        errorDiv.style.display = "none";
+        weatherDiv.style.display = "block"; // Required for the transition to start
+
+        setTimeout(() => {
+            weatherDiv.classList.add("show");
+        }, 20); // 20ms is the "sweet spot" for browsers to catch the change
+        
         const data = await response.json();
 
         // Update UI Text
