@@ -33,7 +33,7 @@ It allows users to check real-time weather information for any city.
 
 ## 🔗 Live Demo
 
-https://cheery-froyo-b9cc60.netlify.app/
+https://skycast-ajay.netlify.app/
 
 ---
 
