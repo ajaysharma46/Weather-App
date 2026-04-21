@@ -5,6 +5,20 @@ const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
+// --- 1. Preload images OUTSIDE the function so it happens on page load ---
+const imagePaths = [
+    "assets/sun cloud.png",
+    "assets/clear.png",
+    "assets/rain.png",
+    "assets/drizzle.png",
+    "assets/mist.png"
+];
+
+imagePaths.forEach((path) => {
+    const img = new Image();
+    img.src = path;
+});
+
 async function checkWeather(city) {
     if (city.trim() === "") return;
 
@@ -17,40 +31,19 @@ async function checkWeather(city) {
             document.querySelector(".error").style.display = "block";
             document.querySelector(".weather").style.display = "none";
             return;
-        } else {
-            var data = await response.json()
         }
-        
-        
 
-          const imagePaths = [
-            "assets/sun cloud.png",
-            "assets/clear.png",
-            "assets/rain.png",
-            "assets/drizzle.png",
-            "assets/mist.png"
-        ];
-
-        // Preload images
-        imagePaths.forEach((path) => {
-            const img = new Image();
-            img.src = path;
-        });
-
+        // --- 2. Only call .json() ONCE here ---
         const data = await response.json();
 
         document.querySelector(".city").textContent = data.name;
-        document.querySelector(".temp").textContent =
-            Math.round(data.main.temp) + "°C";
-
-        document.querySelector(".humidity").textContent =
-            data.main.humidity + "%";
-
-        document.querySelector(".wind").textContent =
-            data.wind.speed + " km/h";
+        document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
+        document.querySelector(".humidity").textContent = data.main.humidity + "%";
+        document.querySelector(".wind").textContent = data.wind.speed + " km/h";
 
         const condition = data.weather[0].main.toLowerCase();
 
+        // --- 3. Set the icon (it will load instantly now because of preloading) ---
         if (condition.includes("cloud")) {
             weatherIcon.src = "assets/sun cloud.png";
         } else if (condition.includes("clear")) {
@@ -59,10 +52,7 @@ async function checkWeather(city) {
             weatherIcon.src = "assets/rain.png";
         } else if (condition.includes("drizzle")) {
             weatherIcon.src = "assets/drizzle.png";
-        } else if (
-            condition.includes("mist") ||
-            condition.includes("haze")
-        ) {
+        } else if (condition.includes("mist") || condition.includes("haze")) {
             weatherIcon.src = "assets/mist.png";
         } else {
             weatherIcon.src = "assets/clear.png";
@@ -72,6 +62,7 @@ async function checkWeather(city) {
         document.querySelector(".error").style.display = "none";
 
     } catch (error) {
+        console.error("Error fetching weather:", error);
         document.querySelector(".error").style.display = "block";
         document.querySelector(".weather").style.display = "none";
     }
