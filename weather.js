@@ -17,7 +17,11 @@ async function checkWeather(city) {
             document.querySelector(".error").style.display = "block";
             document.querySelector(".weather").style.display = "none";
             return;
+        } else {
+            var data = await response.json()
         }
+        
+        
 
           const imagePaths = [
             "assets/sun cloud.png",
