@@ -77,3 +77,27 @@ searchBox.addEventListener("keydown", (e) => {
         checkWeather(searchBox.value);
     }
 });
+
+// ... (previous code for setting textContent and icon)
+
+        const weatherDiv = document.querySelector(".weather");
+        const errorDiv = document.querySelector(".error");
+
+        errorDiv.style.display = "none";
+        
+        // Reset state so it can animate again if searching a new city
+        weatherDiv.classList.remove("show");
+        weatherDiv.style.display = "block";
+
+        // A tiny delay (10ms) ensures the transition triggers smoothly
+        setTimeout(() => {
+            weatherDiv.classList.add("show");
+        }, 10);
+
+    } catch (error) {
+        console.error("Error fetching weather:", error);
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+        document.querySelector(".weather").classList.remove("show");
+    }
+}
