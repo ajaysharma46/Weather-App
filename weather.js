@@ -19,6 +19,20 @@ async function checkWeather(city) {
             return;
         }
 
+          const imagePaths = [
+            "assets/sun cloud.png",
+            "assets/clear.png",
+            "assets/rain.png",
+            "assets/drizzle.png",
+            "assets/mist.png"
+        ];
+
+        // Preload images
+        imagePaths.forEach((path) => {
+            const img = new Image();
+            img.src = path;
+        });
+
         const data = await response.json();
 
         document.querySelector(".city").textContent = data.name;
