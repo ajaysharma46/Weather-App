@@ -4,8 +4,10 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
+const weatherDiv = document.querySelector(".weather");
+const errorDiv = document.querySelector(".error");
 
-// --- 1. Preload images OUTSIDE the function so it happens on page load ---
+// 1. Preload images on page load
 const imagePaths = [
     "assets/sun cloud.png",
     "assets/clear.png",
@@ -28,22 +30,23 @@ async function checkWeather(city) {
         );
 
         if (response.status === 404) {
-            document.querySelector(".error").style.display = "block";
-            document.querySelector(".weather").style.display = "none";
+            errorDiv.style.display = "block";
+            weatherDiv.style.display = "none";
+            weatherDiv.classList.remove("show");
             return;
         }
 
-        // --- 2. Only call .json() ONCE here ---
         const data = await response.json();
 
+        // Update UI Text
         document.querySelector(".city").textContent = data.name;
         document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
         document.querySelector(".humidity").textContent = data.main.humidity + "%";
         document.querySelector(".wind").textContent = data.wind.speed + " km/h";
 
+        // Update Weather Icon
         const condition = data.weather[0].main.toLowerCase();
 
-        // --- 3. Set the icon (it will load instantly now because of preloading) ---
         if (condition.includes("cloud")) {
             weatherIcon.src = "assets/sun cloud.png";
         } else if (condition.includes("clear")) {
@@ -58,16 +61,28 @@ async function checkWeather(city) {
             weatherIcon.src = "assets/clear.png";
         }
 
-        document.querySelector(".weather").style.display = "block";
-        document.querySelector(".error").style.display = "none";
+        // --- ANIMATION LOGIC START ---
+        errorDiv.style.display = "none";
+        
+        // Reset the animation state
+        weatherDiv.classList.remove("show");
+        weatherDiv.style.display = "block";
+
+        // Tiny delay to let the browser register display:block before fading in
+        setTimeout(() => {
+            weatherDiv.classList.add("show");
+        }, 10);
+        // --- ANIMATION LOGIC END ---
 
     } catch (error) {
         console.error("Error fetching weather:", error);
-        document.querySelector(".error").style.display = "block";
-        document.querySelector(".weather").style.display = "none";
+        errorDiv.style.display = "block";
+        weatherDiv.style.display = "none";
+        weatherDiv.classList.remove("show");
     }
 }
 
+// Event Listeners
 searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value);
 });
@@ -77,27 +92,3 @@ searchBox.addEventListener("keydown", (e) => {
         checkWeather(searchBox.value);
     }
 });
-
-// ... (previous code for setting textContent and icon)
-
-        const weatherDiv = document.querySelector(".weather");
-        const errorDiv = document.querySelector(".error");
-
-        errorDiv.style.display = "none";
-        
-        // Reset state so it can animate again if searching a new city
-        weatherDiv.classList.remove("show");
-        weatherDiv.style.display = "block";
-
-        // A tiny delay (10ms) ensures the transition triggers smoothly
-        setTimeout(() => {
-            weatherDiv.classList.add("show");
-        }, 10);
-
-    } catch (error) {
-        console.error("Error fetching weather:", error);
-        document.querySelector(".error").style.display = "block";
-        document.querySelector(".weather").style.display = "none";
-        document.querySelector(".weather").classList.remove("show");
-    }
-}
