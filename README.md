@@ -26,7 +26,7 @@ It allows users to check real-time weather information for any city.
 
 ## 📸 Preview
 
-<img src='/assets/searchpage.png'>
+<img src='/assets/searchpage.png' height="100px">
 <img src='/assets/resultpage.png'>
 
 ---
