@@ -33,7 +33,7 @@ It allows users to check real-time weather information for any city.
 
 ## 🔗 Live Demo
 
-https://skycast-ajay.netlify.app/
+https://ajay-weather.vercel.app/
 
 ---
 
