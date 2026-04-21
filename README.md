@@ -26,8 +26,8 @@ It allows users to check real-time weather information for any city.
 
 ## 📸 Preview
 
-<img src='/assets/searchpage.png' height="100px">
-<img src='/assets/resultpage.png'>
+<img src='/assets/searchpage.png' height="500px">
+<img src='/assets/resultpage.png' height="500px">
 
 ---
 
