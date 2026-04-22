@@ -70,15 +70,12 @@ async function checkWeather(city) {
             weatherIcon.src = "assets/clear.png";
         }
 
-        searchBtn.addEventListener("click", () => {
-        document.querySelector(".search").classList.remove("active-style");
-        checkWeather(searchBox.value);
+          searchBox.addEventListener("focus", () => {
+            const searchContainer = document.querySelector(".search");
+            searchContainer.style.border = "1px solid #00d4ff";
+            searchContainer.style.boxShadow = "0 0 20px rgba(0, 212, 255, 0.2)";
         });
 
-// When clicking the box: Add the style back
-        searchBox.addEventListener("focus", () => {
-        document.querySelector(".search").classList.add("active-style");
-        });
 
         // --- ANIMATION LOGIC START ---
         errorDiv.style.display = "none";
@@ -101,11 +98,25 @@ async function checkWeather(city) {
     }
 }
 
-// Event Listeners
-searchBtn.addEventListener("click", () => {
-    checkWeather(searchBox.value);
-    searchBox.blur(); 
-});
+  searchBox.addEventListener("focus", () => {
+            const searchContainer = document.querySelector(".search");
+            searchContainer.style.border = "1px solid #00d4ff";
+            searchContainer.style.boxShadow = "0 0 20px rgba(0, 212, 255, 0.2)";
+        });
+
+
+        searchBtn.addEventListener("click", () => {
+            const searchContainer = document.querySelector(".search");
+
+            // Remove the glow immediately
+            searchContainer.style.border = "1px solid rgba(255, 255, 255, 0.1)";
+            searchContainer.style.boxShadow = "none";
+
+            // Force the cursor out of the input box so the glow doesn't stay
+            searchBox.blur();
+            checkWeather(searchBox.value);
+
+        })
 
 searchBox.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
