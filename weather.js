@@ -23,6 +23,8 @@ imagePaths.forEach((path) => {
 
 async function checkWeather(city) {
     if (city.trim() === "") return;
+   
+    searchBox.blur(); 
 
     try {
         const response = await fetch(
