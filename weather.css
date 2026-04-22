@@ -39,7 +39,7 @@ body {
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 30px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     box-sizing: border-box; /* Ensures padding doesn't increase width */
 }
 
@@ -223,4 +223,10 @@ body {
 
 .search button:focus {
     outline: none;
+}
+
+/* The state when the search is active/focused */
+.search.active-style {
+    border: 1px solid #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
