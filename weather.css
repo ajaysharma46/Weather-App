@@ -230,3 +230,7 @@ body {
     border: 1px solid #fff;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
+
+.search input:focus {
+    outline: none; /* Prevents the browser's default blue ring from interfering */
+}
