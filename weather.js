@@ -70,6 +70,8 @@ async function checkWeather(city) {
             weatherIcon.src = "assets/clear.png";
         }
 
+        document.querySelector(".search").style.border = "1px solid rgba(255, 255, 255, 0.1)"; 
+        document.querySelector(".search").style.boxShadow = "none";
         // --- ANIMATION LOGIC START ---
         errorDiv.style.display = "none";
         
