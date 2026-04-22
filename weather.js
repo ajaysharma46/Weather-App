@@ -124,3 +124,11 @@ searchBox.addEventListener("keydown", (e) => {
         searchBox.blur(); 
     }
 });
+
+searchBox.addEventListener("blur", () => {
+    const searchContainer = document.querySelector(".search");
+    
+    // Reset to original dim state
+    searchContainer.style.border = "1px solid rgba(255, 255, 255, 0.1)"; 
+    searchContainer.style.boxShadow = "none";
+});
