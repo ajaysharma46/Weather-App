@@ -221,3 +221,6 @@ body {
 }
 
 
+.search button:focus {
+    outline: none;
+}
