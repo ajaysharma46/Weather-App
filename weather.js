@@ -118,12 +118,19 @@ async function checkWeather(city) {
 
         })
 
-searchBox.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
+searchBox.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && searchBox.value.trim() !== "") {
+      
+        searchBtn.classList.add("pressed");
+
+    
         checkWeather(searchBox.value);
-        searchBox.blur(); 
+
+       
+        setTimeout(() => {
+            searchBtn.classList.remove("pressed");
+        }, 200);
     }
-});
 
 searchBox.addEventListener("blur", () => {
     const searchContainer = document.querySelector(".search");
