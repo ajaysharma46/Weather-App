@@ -130,6 +130,7 @@ searchBox.addEventListener("keydown", (event) => {
         setTimeout(() => {
             searchBtn.classList.remove("pressed");
         }, 200);
+      }
     });
 
 searchBox.addEventListener("blur", () => {
