@@ -116,7 +116,7 @@ async function checkWeather(city) {
             searchBox.blur();
             checkWeather(searchBox.value);
 
-        })
+        });
 
 searchBox.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && searchBox.value.trim() !== "") {
@@ -130,7 +130,7 @@ searchBox.addEventListener("keydown", (event) => {
         setTimeout(() => {
             searchBtn.classList.remove("pressed");
         }, 200);
-    }
+    });
 
 searchBox.addEventListener("blur", () => {
     const searchContainer = document.querySelector(".search");
